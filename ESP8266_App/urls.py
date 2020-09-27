@@ -27,6 +27,4 @@ urlpatterns = [
     path('control/index', Control.index, name='control'),
     path('report/', Report.index, name='report'),
     path('report/index', Report.index, name='report'),
-    path('administration/', Administration.index, name='report'),
-    path('administration/index', Administration.index, name='report'),
 ]

@@ -10,3 +10,18 @@ class Device(models.Model):
     status = models.CharField(max_length=3, default='0')
     connected = models.CharField(max_length=5, default='false')
     led_status = models.CharField(max_length=3, default='off')
+
+    def __str__(self):
+        return (self.name)
+
+    def is_online(self):
+        return (self.connected)
+
+    def device_id(self):
+        return (self.id)
+
+    def device_status(self):
+        return self.status
+
+    def device_led_status(self):
+        return self.led_status
