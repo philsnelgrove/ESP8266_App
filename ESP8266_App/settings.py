@@ -30,6 +30,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'ESP8266_Control.apps.Esp8266ControlConfig',
+    'ESP8266_Report.apps.Esp8266ReportConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
