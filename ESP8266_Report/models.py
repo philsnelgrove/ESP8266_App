@@ -3,7 +3,6 @@ from ESP8266_Control.models import Device
 
 
 class Report(models.Model):
-    id = models.IntegerField(primary_key=True)
     device = models.ForeignKey(Device, on_delete=models.DO_NOTHING)
     status = models.CharField(max_length=3, default='0')
     event = models.CharField(max_length=200)
