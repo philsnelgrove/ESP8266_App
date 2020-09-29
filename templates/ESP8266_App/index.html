@@ -1,7 +1,7 @@
 {% if device_list %}
     <ul>
     {% for device in device_list %}
-        <button><a href="/control/{{ device.id }}/">{{ device.name }}</a></button>
+        <button><a href="control/{{ device.id }}/toggle_led">{{ device.name }}{{ device.ip_address }}</a></button>
     {% endfor %}
     </ul>
 {% else %}

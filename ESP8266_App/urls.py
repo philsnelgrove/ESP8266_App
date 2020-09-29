@@ -19,14 +19,18 @@ from django.urls import path, include
 from . import views
 from ESP8266_Control import views as Control
 from ESP8266_Report import views as Report
+# app_name = 'ESP8266_App'
 urlpatterns = [
-    path('', views.index, name='index'),
-    path('index/', views.index, name='index'),
+    path('', views.index),
+    path('index/', views.index),
     path('admin/', admin.site.urls),
-    path('control/', Control.index, name='control'),
-    path('control/index', Control.index, name='control'),
-    path('report/', Report.index, name='report'),
-    path('report/index', Report.index, name='report'),
+    path('control/', Control.index),
+    path('control/index/', Control.index),
+    path('control/<int:device_id>/', Control.index, name='device'),
+    path('control/<int:device_id>/<str:command>/', Control.command),
+    path('control/<int:device_id>/<str:command>/<str:params>/', Control.command_params),
+    path('report/', Report.index),
+    path('report/index/', Report.index),
 ]
 if settings.DEBUG:
     import debug_toolbar

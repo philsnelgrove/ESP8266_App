@@ -1,0 +1,9 @@
+{% if device_list %}
+    <ul>
+    {% for device in device_list %}
+        <button><a href="control/{{ device.id }}/{{ command }}/{{ params }}/">{{ device.name }}{{ device.ip_address }}</a></button>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No devices are connected.</p>
+{% endif %}

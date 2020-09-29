@@ -21,7 +21,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 't6es%i6*56k)ksn3ohcmi4x0_=b(@rpw-x^2$cq5h6x-x@8yi^'
+# SECRET_KEY = 't6es%i6*56k)ksn3ohcmi4x0_=b(@rpw-x^2$cq5h6x-x@8yi^'
+SECRET_KEY = os.getenv('SECRET_KEY', 'Null')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -82,11 +83,11 @@ WSGI_APPLICATION = 'ESP8266_App.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'esp8266',
-        'USER': 'phil',
-        'PASSWORD': 'manchu',
-        'HOST': 'localhost',
-        'PORT': '3306',
+        'NAME': os.getenv('DB_NAME', 'Null'),
+        'USER': os.getenv('DB_USER', 'Null'),
+        'PASSWORD': os.getenv('DB_PASSWORD', 'Null'),
+        'HOST': os.getenv('DB_HOST', 'Null'),
+        'PORT': os.getenv('DB_PORT', 'Null'),
     }
 }
 
