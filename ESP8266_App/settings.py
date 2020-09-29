@@ -8,6 +8,13 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
+
+env_vars:
+SECRET_KEY=t6es%i6*56k)ksn3ohcmi4x0_=b(@rpw-x^2$cq5h6x-x@8yi^
+DB_HOST=localhost
+DB_USER=<mysql account_name>
+DB_PASSWORD=<mysql password>
+DB_PORT=3306
 """
 
 from pathlib import Path
