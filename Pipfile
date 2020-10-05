@@ -12,6 +12,7 @@ django-debug-toolbar = "*"
 mysqlclient = "*"
 mysql = "*"
 mysql-connector-python = "*"
+djangorestframework = "*"
 
 [requires]
 python_version = "3.7"
