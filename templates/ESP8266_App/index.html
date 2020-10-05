@@ -1,9 +1,22 @@
-{% if device_list %}
-    <ul>
-    {% for device in device_list %}
-        <button><a href="control/{{ device.id }}/toggle_led">{{ device.name }}{{ device.ip_address }}</a></button>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No devices are connected.</p>
-{% endif %}
+{% extends './base.html' %}
+{% block content %}
+	{% if device_list %}
+	    <ul>
+	    {% for device in device_list %}				
+		        <button onclick="myClick('{{ device.id }}')" name="button{{ device.id }}" id="button{{ device.id }}" value="device{{ device.id }}">{{ device.name }}:{{ device.ip_address }}</a></button>
+	    {% endfor %}
+	    </ul>
+	{% else %}
+	    <p>No devices are connected.</p>
+	{% endif %}
+	<div class="message"></div>
+{% endblock %}
+
+{% block javascript %}
+function myClick(id) {
+		$.post('control/'+id+'/toggle_led/', '', function(data){
+			$('.message').html(data.message);
+		});
+	// e.preventDefault();
+}
+{% endblock %}

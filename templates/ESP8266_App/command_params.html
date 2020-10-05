@@ -1,7 +1,12 @@
 {% if device_list %}
     <ul>
     {% for device in device_list %}
-        <button><a href="control/{{ device.id }}/{{ command }}/{{ params }}/">{{ device.name }}{{ device.ip_address }}</a></button>
+   		<form method="post">{% csrf_token %}
+   			<script>
+			const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+			</script>
+	        <button><a href="control/{{ device.id }}/{{ command }}/{{ params }}/">{{ device.name }}:{{ device.ip_address }}</a></button>
+	    </form>
     {% endfor %}
     </ul>
 {% else %}

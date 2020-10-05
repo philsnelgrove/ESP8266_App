@@ -25,10 +25,9 @@ urlpatterns = [
     path('index/', views.index),
     path('admin/', admin.site.urls),
     path('control/', Control.index),
-    path('control/index/', Control.index),
     path('control/<int:device_id>/', Control.index, name='device'),
-    path('control/<int:device_id>/<str:command>/', Control.command),
-    path('control/<int:device_id>/<str:command>/<str:params>/', Control.command_params),
+    path('control/<int:device_id>/<str:command>/', Control.command, name='command'),
+    path('control/<int:device_id>/<str:command>/<str:params>/', Control.command_params, name='command_params'),
     path('report/', Report.index),
     path('report/index/', Report.index),
 ]

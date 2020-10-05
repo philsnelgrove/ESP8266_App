@@ -1,18 +1,26 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 from ESP8266_Control.models import Device
 from ESP8266Server.Server import Logic
 from ESP8266Server.Server import Data
 import pprint
-
+from django.views.decorators.csrf import csrf_exempt
 pp = pprint.PrettyPrinter(indent=4)
 
 
+@csrf_exempt
 def index(request, device_id="0"):
     output = '{}'.format(device_id)
-    return HttpResponse(output)
+    if request.method == "GET":
+        return HttpResponse(output)
+    else:
+        return output
 
 
+@csrf_exempt
 def command(request, device_id, command):
     myDataSource = Data.DataSource()
     myDevice = myDataSource.node_lookup_by_id(device_id)
@@ -26,10 +34,14 @@ def command(request, device_id, command):
     led_status = [item[7] for item in myDevice][0]
     output = "COMMAND: {}() being sent to ID{}: {} - MAC:{} Last Connected:{} | IP:{} Connected:{} Status:{} LED:{}".format(command, deviceId, name, mac_address, last_connected, ip_address, connected, status, led_status)
     port = 9998
-    # Logic.send_command_to_node(request, ip_address, port, command)
-    return HttpResponse(output)
+    Logic.send_command_to_node(request, ip_address, port, command)
+    if request.method == "GET":
+        return HttpResponse(output)
+    else:
+        return Response(output, status=201)
 
 
+@csrf_exempt
 def command_params(request, device_id, command, params):
     myDataSource = Data.DataSource()
     myDevice = myDataSource.node_lookup_by_id(device_id)
@@ -43,5 +55,8 @@ def command_params(request, device_id, command, params):
     led_status = [item[7] for item in myDevice][0]
     output = "COMMAND:{}({}) being sent to ID{}: {} - MAC:{} Last Connected:{} | IP:{} Connected:{} Status:{} LED:{}".format(command, params, deviceId, name, mac_address, last_connected, ip_address, connected, status, led_status)
     port = 9998
-    # Logic.send_command_to_node(request, ip_address, port, command, params)
-    return HttpResponse(output)
+    Logic.send_command_to_node(request, ip_address, port, command, params)
+    if request.method == "GET":
+        return HttpResponse(output)
+    else:
+        return Response(output, status=201)
