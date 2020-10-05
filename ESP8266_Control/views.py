@@ -17,7 +17,7 @@ def index(request, device_id="0"):
     if request.method == "GET":
         return HttpResponse(output)
     else:
-        return output
+        return HttpResponse(output)
 
 
 @csrf_exempt
@@ -38,7 +38,7 @@ def command(request, device_id, command):
     if request.method == "GET":
         return HttpResponse(output)
     else:
-        return Response(output, status=201)
+        return HttpResponse(output)
 
 
 @csrf_exempt
@@ -59,4 +59,4 @@ def command_params(request, device_id, command, params):
     if request.method == "GET":
         return HttpResponse(output)
     else:
-        return Response(output, status=201)
+        return HttpResponse(output)

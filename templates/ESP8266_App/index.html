@@ -9,13 +9,14 @@
 	{% else %}
 	    <p>No devices are connected.</p>
 	{% endif %}
-	<div class="message"></div>
+	<div class="message" name="message" id="message"></div>
 {% endblock %}
 
 {% block javascript %}
 function myClick(id) {
 		$.post('control/'+id+'/toggle_led/', '', function(data){
-			$('.message').html(data.message);
+			console.log(data);
+			$('#message').html(data);
 		});
 	// e.preventDefault();
 }
